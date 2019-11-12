@@ -1,0 +1,35 @@
+body{
+  background-color: rgb(29, 29, 29);
+}
+
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.content {
+  display: block;
+}
+
+button,
+input {
+  font-size: 20px;
+}
+
+.buttons {
+  margin: 10px;
+}
+
+.page {
+  margin: auto;
+  display: flex;
+}
+
+.page img {
+  width: auto;
+  margin: auto;
+  max-width: 100%;
+}
