@@ -11,7 +11,7 @@ class MainComponent extends React.Component {
       ]
     )
     this.state = {
-      manga: 'one-piece',
+      manga: 'One-Punch-Man',
       chapterNumber: chapter
     }
     this.mangas = mangas
@@ -19,16 +19,36 @@ class MainComponent extends React.Component {
 
   renderImage = (chapter, manga) => {
     const res = []
-    let page = 0
+    let page = 1
     while (page < 31) {
+      let isError = false
       let str = '' + page
       let pad = '00'
+      let ext = 'jpg'
       let ans = pad.substring(0, pad.length - str.length) + str
       try {
         res.push(
           <div className="page">
             <img
-              src={`http://lelscanv.com/mangas/${manga}/${chapter}/${ans}.jpg`}
+              onError={i => {
+                if (!isError) {
+                  pad = pad + '0'
+                  ans = pad.substring(0, pad.length - str.length) + str
+                  i.target.src = `https://c.japscan.co/lel/${manga}/${chapter}/${ans}.${ext}`
+                  if (pad.length > 3) {
+                    i.target.style.display = 'none'
+                    if (pad.length > 3 && ext === 'png') {
+                      isError = true
+                    }
+                    ext = 'png'
+                    pad = '0'
+                  }
+                }
+              }}
+              onLoad={i => {
+                i.target.style.display = 'flex'
+              }}
+              src={`https://c.japscan.co/lel/${manga}/${chapter}/${ans}.jpg`}
               alt="page"
             ></img>
           </div>
@@ -42,7 +62,6 @@ class MainComponent extends React.Component {
   }
 
   Selector = ({ chapterNumber, manga }) => {
-    console.log({ chapterNumber, manga })
     return (
       <div className="buttons">
         <select
@@ -50,8 +69,8 @@ class MainComponent extends React.Component {
           onChange={e => this.setState({ manga: e.target.value })}
         >
           {this.mangas.map(manga => (
-            <option key={manga} value={manga.toLowerCase()}>
-              {manga.toLowerCase()}
+            <option key={manga} value={manga}>
+              {manga}
             </option>
           ))}
         </select>
@@ -81,9 +100,9 @@ class MainComponent extends React.Component {
     const tableImage = this.renderImage(chapterNumber, manga)
     return (
       <div className="container">
-        <this.Selector chapterNumber={chapterNumber} manga={manga} />
+        <this.Selector chapterNumber={parseInt(chapterNumber)} manga={manga} />
         <div className="content">{tableImage}</div>
-        <this.Selector chapterNumber={chapterNumber} manga={manga} />
+        <this.Selector chapterNumber={parseInt(chapterNumber)} manga={manga} />
         <p
           style={{
             fontSize: '20px',

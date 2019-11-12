@@ -1,7 +1,6 @@
-body{
+body {
   background-color: rgb(29, 29, 29);
 }
-
 
 .container {
   display: flex;
@@ -24,6 +23,7 @@ input {
 }
 
 .page {
+  justify-content: center;
   margin: auto;
   display: flex;
 }
@@ -32,4 +32,5 @@ input {
   width: auto;
   margin: auto;
   max-width: 100%;
+  margin: 10px;
 }
