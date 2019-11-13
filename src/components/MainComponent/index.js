@@ -5,11 +5,12 @@ import { mangas } from './manga'
 class MainComponent extends React.Component {
   constructor(props) {
     super(props)
-    const chapter = parseInt(
-      window.location.href.split('/')[
-        window.location.href.split('/').length - 1
-      ]
-    )
+    const chapter =
+      parseInt(
+        window.location.href.split('/')[
+          window.location.href.split('/').length - 1
+        ]
+      ) | 160
     this.state = {
       manga: 'One-Punch-Man',
       chapterNumber: chapter
@@ -87,7 +88,10 @@ class MainComponent extends React.Component {
           }}
         ></input>
         <button
-          onClick={() => this.setState({ chapterNumber: (chapterNumber += 1) })}
+          onClick={() => {
+            this.setState({ chapterNumber: (chapterNumber += 1) })
+            window.scrollTo(0, 0)
+          }}
         >
           next
         </button>
@@ -98,9 +102,16 @@ class MainComponent extends React.Component {
   render() {
     let { chapterNumber, manga } = this.state
     const tableImage = this.renderImage(chapterNumber, manga)
+    const url = `https://www.japscan.co/lecture-en-ligne/${manga}/${chapterNumber}/`
     return (
       <div className="container">
         <this.Selector chapterNumber={parseInt(chapterNumber)} manga={manga} />
+        <div style={{ color: 'white' }}>
+          Scan Original:{' '}
+          <a rel="noopener noreferrer" target="_blank" href={url}>
+            {url}
+          </a>
+        </div>
         <div className="content">{tableImage}</div>
         <this.Selector chapterNumber={parseInt(chapterNumber)} manga={manga} />
         <p
