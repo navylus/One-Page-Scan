@@ -13,6 +13,7 @@ export const mangas = [
   'Hunter-X-Hunter',
   'Magi',
   'My-Hero-Academia',
+  'Nanatsu-No-Taizai',
   'Naruto',
   'Naruto-Gaiden',
   'One-Piece',
