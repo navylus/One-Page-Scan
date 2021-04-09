@@ -35,7 +35,7 @@ class MainComponent extends React.Component {
                 if (!isError) {
                   pad = pad + '0'
                   ans = pad.substring(0, pad.length - str.length) + str
-                  i.target.src = `https://c.japscan.co/lel/${manga}/${chapter}/${ans}.${ext}`
+                  i.target.src = `https://c.japscan.se/lel/${manga}/${chapter}/${ans}.${ext}`
                   if (pad.length > 3) {
                     i.target.style.display = 'none'
                     if (pad.length > 3 && ext === 'png') {
@@ -49,7 +49,7 @@ class MainComponent extends React.Component {
               onLoad={i => {
                 i.target.style.display = 'flex'
               }}
-              src={`https://c.japscan.co/lel/${manga}/${chapter}/${ans}.jpg`}
+              src={`https://c.japscan.se/lel/${manga}/${chapter}/${ans}.jpg`}
               alt="page"
             ></img>
           </div>
@@ -102,7 +102,7 @@ class MainComponent extends React.Component {
   render() {
     let { chapterNumber, manga } = this.state
     const tableImage = this.renderImage(chapterNumber, manga)
-    const url = `https://www.japscan.co/lecture-en-ligne/${manga}/${chapterNumber}/`
+    const url = `https://www.japscan.se/lecture-en-ligne/${manga}/${chapterNumber}/`
     return (
       <div className="container">
         <this.Selector chapterNumber={parseInt(chapterNumber)} manga={manga} />
