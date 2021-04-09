@@ -10,9 +10,9 @@ class MainComponent extends React.Component {
         window.location.href.split('/')[
         window.location.href.split('/').length - 1
         ]
-      ) | 160
+      ) | 193
     this.state = {
-      manga: 'One-Punch-Man',
+      manga: 'My-Hero-Academia',
       chapterNumber: chapter
     }
     this.mangas = mangas
