@@ -8,7 +8,7 @@ class MainComponent extends React.Component {
     const chapter =
       parseInt(
         window.location.href.split('/')[
-          window.location.href.split('/').length - 1
+        window.location.href.split('/').length - 1
         ]
       ) | 160
     this.state = {
@@ -111,6 +111,7 @@ class MainComponent extends React.Component {
           <a rel="noopener noreferrer" target="_blank" href={url}>
             {url}
           </a>
+          Si l'image ne charge pas essaye d'ouvrir le lien dans un autre onglet
         </div>
         <div className="content">{tableImage}</div>
         <this.Selector chapterNumber={parseInt(chapterNumber)} manga={manga} />
